@@ -1,0 +1,67 @@
+[owner]
+name = "fzs"
+password = "dongfengyang070313"
+
+[[databases]]
+host = "192.168.6.106"
+sid = "myora"
+
+[[databases]]
+sid = "cwdb"
+host = "10.6.13.1"
+sql_type = "all"
+
+[[databases]]
+sid = "bpdb"
+host = "10.6.13.1"
+sql_type = "arch_and_db_cap"
+
+[[databases]]
+sid = "fsywdb"
+host = "10.6.14.1"
+sql_type = "all"
+
+[[databases]]
+sid = "odsdb"
+host = "10.6.12.21"
+sql_type = "user_and_db_cap"
+
+[[databases]]
+sid = "o19chx"
+host = "10.6.12.11"
+sql_type = "all"
+
+[[databases]]
+sid = "o19cfs"
+host = "10.6.12.11"
+sql_type = "user_and_db_cap"
+
+[[databases]]
+sid = "o19cbp"
+host = "10.6.12.51"
+sql_type = "user_and_db_cap"
+
+[[databases]]
+sid = "o19cww"
+host = "10.6.12.51"
+sql_type = "all"
+
+[[databases]]
+sid = "checks"
+host = "10.6.12.21"
+sql_type = "only_db_cap"
+
+[[databases]]
+sid = "olap"
+host = "10.6.12.21"
+sql_type = "user_and_db_cap"
+
+[[databases]]
+sid = "cognos"
+host = "10.6.12.21"
+sql_type = "only_db_cap"
+
+[sql]
+user_cap = "select owner,sum(bytes/1024/1024/1024) from dba_segments where owner in ('ZYIC','BP','GL','HPM','APPLSYS','DZHXP','ATS','SIP_PJBJ','JYDB','ZYWMD','JZZF','ZYICEC','ECOLOGY','ILOG','PLATFORM','NYXLINK','SALES','AGRI','ZYICECIF','BI','EASTRPT','BDDJ3','EASTDW','ZBJ') group by owner order by 2 desc"
+db_cap = "select round(sum(bytes/1024/1024/1024),2) total_gb from dba_segments"
+arch_avg_cap = "select avg(round(sum(a.blocks * a.block_size) / 1024 / 1024 / 1024, 0)) arch_avg_cap from v$archived_log a, v$database b where a.completion_time>sysdate-31 group by b.name, to_char(a.completion_time, 'yyyy-mm-dd')"
