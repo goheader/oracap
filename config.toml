@@ -3,63 +3,59 @@ name = "fzs"
 password = "dongfengyang070313"
 
 [[databases]]
-host = "192.168.6.106"
-sid = "myora"
-
-[[databases]]
 sid = "cwdb"
 host = "10.6.13.1"
-sql_type = "all"
+sql_type = "ALL"
 
 [[databases]]
 sid = "bpdb"
 host = "10.6.13.1"
-sql_type = "arch_and_db_cap"
+sql_type = "ArchAndDBCap"
 
 [[databases]]
 sid = "fsywdb"
 host = "10.6.14.1"
-sql_type = "all"
+sql_type = "ALL"
 
 [[databases]]
 sid = "odsdb"
 host = "10.6.12.21"
-sql_type = "user_and_db_cap"
+sql_type = "UserAndDBCap"
 
 [[databases]]
 sid = "o19chx"
 host = "10.6.12.11"
-sql_type = "all"
+sql_type = "ALL"
 
 [[databases]]
 sid = "o19cfs"
 host = "10.6.12.11"
-sql_type = "user_and_db_cap"
+sql_type = "UserAndDBCap"
 
 [[databases]]
 sid = "o19cbp"
 host = "10.6.12.51"
-sql_type = "user_and_db_cap"
+sql_type = "UserAndDBCap"
 
 [[databases]]
 sid = "o19cww"
 host = "10.6.12.51"
-sql_type = "all"
+sql_type = "ALL"
 
 [[databases]]
 sid = "checks"
 host = "10.6.12.21"
-sql_type = "only_db_cap"
+sql_type = "OnlyDBCap"
 
 [[databases]]
 sid = "olap"
 host = "10.6.12.21"
-sql_type = "user_and_db_cap"
+sql_type = "UserAndDBCap"
 
 [[databases]]
 sid = "cognos"
 host = "10.6.12.21"
-sql_type = "only_db_cap"
+sql_type = "OnlyDBCap"
 
 [sql]
 user_cap = "select owner,sum(bytes/1024/1024/1024) from dba_segments where owner in ('ZYIC','BP','GL','HPM','APPLSYS','DZHXP','ATS','SIP_PJBJ','JYDB','ZYWMD','JZZF','ZYICEC','ECOLOGY','ILOG','PLATFORM','NYXLINK','SALES','AGRI','ZYICECIF','BI','EASTRPT','BDDJ3','EASTDW','ZBJ') group by owner order by 2 desc"

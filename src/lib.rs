@@ -3,7 +3,7 @@ use std::str::FromStr;
 use oracle::{Connection, Error};
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 pub enum SqlType {
     ALL,
     UserAndDBCap,
@@ -75,15 +75,15 @@ impl Databases {
         let user_rows = conn.query(&sql_s.user_cap, &[]).expect("get data failed");
         for user_result in user_rows {
             let row = user_result.expect("no data found");
-            let username = row.get(0).expect("no data get");
-            let user_cap = row.get(1).expect("no data");
+            let username:String = row.get(0).expect("no data get");
+            let user_cap:String = row.get(1).expect("no data");
             println!("{:?}\t\t{:?}", username, user_cap)
         }
     }
 
     pub fn exec_arch_sql(&self, sql_s: &SQLs, conn: &Connection) {
         let arch = conn.query_row(&sql_s.arch_avg_cap, &[]).unwrap();
-        let arch_avg = arch.get("arch_avg_cap").unwrap();
+        let arch_avg:String = arch.get("arch_avg_cap").unwrap();
         println!("arch_avg: {:?}\t\t{:?}", self.sid, arch_avg);
     }
 
@@ -111,18 +111,3 @@ pub struct SQLs {
     pub db_cap: String,
     pub arch_avg_cap: String,
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
