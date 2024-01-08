@@ -15,9 +15,6 @@ fn main() {
                     SqlType::ArchAndDBCap => db.exec_arch_db_sql(&conf.sql,&conn),
                 }
 
-                let res = conn.query_row(&conf.sql.db_cap, &[]).expect("get data failed");
-                let db_cap: f64 = res.get("total_gb").expect("can't get any data");
-                println!("{:?}\t\t{:?}", db.sid, db_cap)
             }
         }
         Err(err) => println!("{:?}", err)
