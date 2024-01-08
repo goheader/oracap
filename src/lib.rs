@@ -68,7 +68,7 @@ impl Databases {
         let db_row = conn.query_row(&sql_s.db_cap, &[]).expect("get data failed");
         let db_cap: f64 = db_row.get("total_gb").expect("can't get any data");
 
-        println!("{:?}\t\t{:?}", self.sid, db_cap);
+        println!("[db]=============>{:?}\t\t{:?}", self.sid, db_cap);
     }
 
     pub fn exec_user_sql(&self, sql_s: &SQLs, conn: &Connection) {
@@ -77,14 +77,14 @@ impl Databases {
             let row = user_result.expect("no data found");
             let username:String = row.get(0).expect("no data get");
             let user_cap:String = row.get(1).expect("no data");
-            println!("{:?}\t\t{:?}", username, user_cap)
+            println!("[user]=============>: {:?}\t\t{:?}", username, user_cap)
         }
     }
 
     pub fn exec_arch_sql(&self, sql_s: &SQLs, conn: &Connection) {
         let arch = conn.query_row(&sql_s.arch_avg_cap, &[]).unwrap();
         let arch_avg:String = arch.get("arch_avg_cap").unwrap();
-        println!("arch_avg: {:?}\t\t{:?}", self.sid, arch_avg);
+        println!("[arch]=============>: {:?}\t\t{:?}", self.sid, arch_avg);
     }
 
     pub fn exec_all_sql(&self, sql_s: &SQLs, conn: &Connection) {
