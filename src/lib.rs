@@ -66,7 +66,7 @@ impl Databases {
 
     pub fn exec_db_sql(&self, sql_s: &SQLs, conn: &Connection) {
         let db_row = conn.query_row(&sql_s.db_cap, &[]).expect("get data failed");
-        let db_cap: f64 = db_row.get("total_gb").expect("can't get any data");
+        let db_cap: i32 = db_row.get("total_gb").expect("can't get any data");
 
         println!("[db]=============>{:?}\t\t{:?}", self.sid, db_cap);
     }
@@ -76,14 +76,14 @@ impl Databases {
         for user_result in user_rows {
             let row = user_result.expect("no data found");
             let username:String = row.get(0).expect("no data get");
-            let user_cap:String = row.get(1).expect("no data");
+            let user_cap:i32 = row.get(1).expect("no data");
             println!("[user]=============>: {:?}\t\t{:?}", username, user_cap)
         }
     }
 
     pub fn exec_arch_sql(&self, sql_s: &SQLs, conn: &Connection) {
         let arch = conn.query_row(&sql_s.arch_avg_cap, &[]).unwrap();
-        let arch_avg:String = arch.get("arch_avg_cap").unwrap();
+        let arch_avg:i32 = arch.get("arch_avg_cap").unwrap();
         println!("[arch]=============>: {:?}\t\t{:?}", self.sid, arch_avg);
     }
 

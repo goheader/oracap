@@ -58,6 +58,6 @@ host = "10.6.12.21"
 sql_type = "OnlyDBCap"
 
 [sql]
-user_cap = "select owner,sum(bytes/1024/1024/1024) from dba_segments where owner in ('ZYIC','BP','GL','HPM','APPLSYS','DZHXP','ATS','SIP_PJBJ','JYDB','ZYWMD','JZZF','ZYICEC','ECOLOGY','ILOG','PLATFORM','NYXLINK','SALES','AGRI','ZYICECIF','BI','EASTRPT','BDDJ3','EASTDW','ZBJ') group by owner order by 2 desc"
-db_cap = "select round(sum(bytes/1024/1024/1024),2) total_gb from dba_segments"
-arch_avg_cap = "select avg(round(sum(a.blocks * a.block_size) / 1024 / 1024 / 1024, 0)) arch_avg_cap from v$archived_log a, v$database b where a.completion_time>sysdate-31 group by b.name, to_char(a.completion_time, 'yyyy-mm-dd')"
+user_cap = "select owner,round(sum(bytes/1024/1024/1024),0) from dba_segments where owner in ('ZYIC','BP','GL','HPM','APPLSYS','DZHXP','ATS','SIP_PJBJ','JYDB','ZYWMD','JZZF','ZYICEC','ECOLOGY','ILOG','PLATFORM','NYXLINK','SALES','AGRI','ZYICECIF','BI','EASTRPT','BDDJ3','EASTDW','ZBJ') group by owner order by 2 desc"
+db_cap = "select round(sum(bytes/1024/1024/1024),0) total_gb from dba_segments"
+arch_avg_cap = "select round(avg(round(sum(a.blocks * a.block_size) / 1024 / 1024 / 1024, 0)),0) arch_avg_cap from v$archived_log a, v$database b where a.completion_time>sysdate-31 group by b.name, to_char(a.completion_time, 'yyyy-mm-dd')"
